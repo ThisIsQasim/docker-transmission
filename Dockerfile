@@ -1,6 +1,4 @@
-FROM debian:jessie
-
-LABEL maintainer "opsxcq@strm.sh"
+FROM debian:buster-slim
 
 RUN apt-get update && \
     apt-get upgrade -y && \
@@ -13,7 +11,7 @@ RUN apt-get update && \
 
 ADD main.sh /main.sh
 
-RUN useradd --system --uid 666 -M --shell /usr/sbin/nologin transmission
+RUN useradd --system --uid 1001 -M --shell /usr/sbin/nologin transmission
 
 RUN mkdir -p /incomplete && chown -R transmission: /incomplete && \
     mkdir -p /downloads && chown -R transmission: /downloads && \

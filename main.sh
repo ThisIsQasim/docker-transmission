@@ -17,6 +17,11 @@ then
     TRANSMISSION_DOWNLOAD_QUEUE='20'
 fi
 
+if [ -z "$TRANSMISSION_UPLOAD_LIMIT" ]
+then
+    TRANSMISSION_UPLOAD_LIMIT='1024'
+fi
+
 cat > /etc/transmission-daemon/settings.json << EOF
 {
     "alt-speed-down": 50,
@@ -76,7 +81,7 @@ cat > /etc/transmission-daemon/settings.json << EOF
     "seed-queue-size": 1,
     "speed-limit-down": $TRANSMISSION_DOWNLOAD_LIMIT,
     "speed-limit-down-enabled": true,
-    "speed-limit-up": 5,
+    "speed-limit-up": $TRANSMISSION_UPLOAD_LIMIT,
     "speed-limit-up-enabled": true,
     "start-added-torrents": true,
     "trash-original-torrent-files": false,
